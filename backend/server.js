@@ -1,3 +1,18 @@
+//Install express server
+const express = require('express');
+const path = require('path');
+
+// Serve only the static files form the dist directory
+app.use(express.static('./dist/shopping-list'));
+
+app.get('/*', (req, res) =>
+    res.sendFile('index.html', {root: 'dist/shopping-list/'}),
+);
+
+// Start the app by listening on the default Heroku port
+app.listen(process.env.PORT || 8080);
+
+
 const express = require('express');
 const app = express();
 const cors = require('cors');
@@ -55,9 +70,6 @@ async function open(){
     items = JSON.parse(res);
     console.log('open',items);
 }
-
-
-
 
 app.listen(3000, () => {
     console.log('servidor iniciado...');
